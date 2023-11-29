@@ -1,0 +1,110 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css';
+@import "https://unpkg.com/boltcss/bolt.min.css";
+@import "./grid.css";
+
+body {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+header {
+  margin-top: 40px;
+  font-size: 1rem;
+}
+
+footer {
+  padding-top: 2rem;
+}
+
+.button-group > button {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.text-block {
+  display: inline-block;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  white-space: pre-wrap;
+}
+
+.category-button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+  text-decoration: none;
+}
+
+.badge:hover {
+  cursor: pointer;
+}
+
+.badge-link {
+  color: white;
+  background-color: #29abe0;
+}
+
+.badge-link:hover {
+  background-color: #438bb7;
+}
+
+.badge-abs {
+  color: #222529;
+  background-color: #dfe2e5;
+}
+
+.badge-abs:hover {
+  background-color: #c3c9cf;
+}
+
+.badge-slides {
+  color: white;
+  background-color: green;
+}
+
+.badge-slides:hover {
+  background-color: rgba(0, 128, 0, 0.8);
+}
+
+.badge-code {
+  color: white;
+  background-color: black;
+}
+
+.badge-code:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.badge-pdf {
+  color: #fcf0e4;
+  background-color: #d88d54;
+}
+
+.badge-pdf:hover {
+  background-color: #d88d54d4;
+}
+
+.badge-demo {
+  color: white;
+  background-color: crimson;
+}
+
+.badge-demo:hover {
+  background-color: rgba(220, 20, 60, 0.8);
+}
