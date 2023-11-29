@@ -99,7 +99,7 @@ watch(noteMsg, (newValue) => {
         <a class="badge badge-link" :href="paper.url" target="_blank">Link</a>
         <a class="badge badge-pdf" :href="paper.pdf_url" target="_blank">PDF</a>
         <a class="badge badge-abs" @click="showAbs[index] = !showAbs[index]">Abstract</a>
-        <p class="text-block" v-if="showAbs[index]">{{ paper.abstract }}</p>
+        <p class="text-block" v-if="showAbs[index]" v-html="paper.abstract"></p>
       </div>
     </div>
   </div>

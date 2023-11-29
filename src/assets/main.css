@@ -23,13 +23,13 @@ footer {
 }
 
 .text-block {
-  display: inline-block;
+  display: block;
   background-color: #f1f1f1;
   color: black;
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid darkgray;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
 }
 
 .category-button {
