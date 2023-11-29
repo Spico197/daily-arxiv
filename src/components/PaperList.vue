@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 
 import cat2papers from '../../papers_with_style.json'
+import rawCat2papers from '../../papers.json'
 
 // cat2papers: { "cs.CL": [{"title": ""}, ...], "cs.AI": [{"title": "", ...}, ...] }
 const categories = ref(Object.keys(cat2papers))
@@ -36,7 +37,7 @@ const numSelected = computed(() => {
 
 const noteMsg = ref("")
 const exportToClipboard = () => {
-  const selectedPapers = papers.value.filter((_, index) => isChecked.value[index])
+  const selectedPapers = rawCat2papers[categoryString.value].filter((_, index) => isChecked.value[index])
   const paperString = selectedPapers.map((paper) => {
     return `"${paper.title}\n\n${paper.url}"`
   }).join('\n')
