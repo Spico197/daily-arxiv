@@ -34,4 +34,5 @@ npm run build
 
 - [ ] bionic reading
 - [ ] paper list dumping
-- [ ] customized 
+- [ ] customized recommendation
+- [ ] GPT-enhanced paper summarization
