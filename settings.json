@@ -1,4 +1,7 @@
 {
+    "owner": "Spico197",
+    "repo": "daily-arxiv",
+    "branch": "main",
     "keys": [
         "information extraction", "event", "relation", "entity", "knowledge graph", "knowledge base", "knowledge",
         "language model", "LLM", "task planning"
@@ -6,7 +9,7 @@
     "authors": [
         "Heng Ji", "Dan Roth", "Manling Li", "Sha Li", "Xinya Du", "Thien Huu Nguyen",
         "Zhiyuan Liu", "Yankai Lin", "Xu Han", "Yubo Chen", "Lifu Huang", "Yaojie Lu", "Bowen Yu",
-        "Sebastian Riedel", "Fabio Petroni", "Alexander M. Rush",
+        "Sebastian Riedel", "Fabio Petroni", "Alexander M. Rush", "Noah A. Smith",
         "Max Tegmark", "Owain Evans",
         "Jeff Dean", "Nan Du", "Colin Raffel", "Luke Zettlemoyer", "Graham Neubig", "Percy Liang", "Ilya Sutskever",
         "Danqi Chen", "Tianyu Gao", "William Yang Wang", "Tengyu Ma", "Diyi Yang", "Jason Wei", "Junxian He",
