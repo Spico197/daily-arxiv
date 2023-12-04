@@ -60,23 +60,22 @@ watch(noteMsg, (newValue) => {
 
 const lastUpdate = ref("")
 
-onMounted(getLatestCommitDateTime)
+onMounted(getLatestWorkflowDateTime)
 
 
-async function getLatestCommitDateTime() {
+async function getLatestWorkflowDateTime() {
   try {
-    const apiUrl = `https://api.github.com/repos/${settings.owner}/${settings.repo}/branches/${settings.branch}`
+    const apiUrl = `https://api.github.com/repos/${settings.owner}/${settings.repo}/actions/runs`
     const response = await fetch(apiUrl)
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`)
     }
 
-    const branchData = await response.json()
-    const commit = branchData.commit.commit
-    const commitDate = new Date(commit.committer.date)
-    const formattedDate = commitDate.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Shanghai' })
-    lastUpdate.value = formattedDate
+    const data = await response.json()
+    const lastRunTime = data.workflow_runs[0].created_at
+    const localeTime = new Date(lastRunTime).toLocaleString('en-US', { timeZone: 'Asia/Shanghai' })
+    lastUpdate.value = localeTime
     console.log(`Last update date: ${formattedDate}`)
   } catch (error) {
     console.error('Error:', error.message)

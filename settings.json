@@ -1,7 +1,6 @@
 {
     "owner": "Spico197",
     "repo": "daily-arxiv",
-    "branch": "main",
     "keys": [
         "information extraction", "event", "relation", "entity", "knowledge graph", "knowledge base", "knowledge",
         "language model", "LLM", "task planning"
