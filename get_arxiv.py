@@ -6,12 +6,11 @@ Inspired by:
 
 import re
 import json
-from datetime import datetime, timedelta, timezone
-from dataclasses import dataclass
+import datetime as dt
+
 from typing import Iterable
 
 import arxiv
-import feedparser
 
 
 def load_json(filepath):
@@ -24,12 +23,14 @@ def dump_json(filepath, data):
         json.dump(data, fout, indent=2, ensure_ascii=False)
 
 
-def cover_timezones(date: datetime) -> datetime:
-    # to UTF+8
-    return date.astimezone(timezone(timedelta(hours=8)))
+def cover_timezones(date: dt.datetime, timezone: int = 8) -> dt.datetime:
+    # to UTF+k
+    return date.astimezone(dt.timezone(dt.timedelta(hours=timezone)))
 
 
-def collect_category(category: str, days: int = 1) -> Iterable[arxiv.Result]:
+def collect_category(
+    category: str, days: int = 1, timezone: int = 8
+) -> Iterable[arxiv.Result]:
     """
     Collect arxiv papers from a category.
     """
@@ -53,13 +54,13 @@ def collect_category(category: str, days: int = 1) -> Iterable[arxiv.Result]:
         if max_iter <= 0:
             break
 
-        today = datetime.now(paper.updated.tzinfo)
-        if paper.updated.date() < today.date() - timedelta(days=days):
+        today = dt.datetime.now(paper.updated.tzinfo)
+        if paper.updated.date() < today.date() - dt.timedelta(days=days):
             if paper.updated.weekday() < 4 or today.weekday() != 0:
                 break
 
         # Convert to UTC+8
-        date = cover_timezones(paper.updated).strftime("%b %d %Y %a")
+        date = cover_timezones(paper.updated, timezone=timezone).strftime("%b %d %Y %a")
         paper.local_date = date
 
         yield paper
@@ -113,7 +114,7 @@ if __name__ == "__main__":
     for category in settings["categories"]:
         print(f"Collecting {category}...")
         papers[category] = []
-        for paper in collect_category(category, days=1):
+        for paper in collect_category(category, days=1, timezone=settings["timezone"]):
             papers[category].append(
                 {
                     "title": paper.title,

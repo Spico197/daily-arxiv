@@ -11,7 +11,7 @@ const papers = ref([])
 const categoryString = ref("")
 const isChecked = ref([])
 const showAbs = ref([])
-const paperDates = ref("")
+// const paperDates = ref("")
 
 // Compute the number of papers for each category
 const paperNum = ref({})
@@ -25,7 +25,7 @@ const showPapers = (category) => {
   isChecked.value = Array(paperNum.value[category]).fill(false)
   showAbs.value = Array(paperNum.value[category]).fill(false)
   const uniqueDates = [...new Set(papers.value.map((paper) => paper.date))]
-  paperDates.value = uniqueDates.join(', ')
+  // paperDates.value = uniqueDates.join(', ')
 }
 
 let allIsSelected = false
@@ -105,7 +105,7 @@ function navigateToTop() {
   <p><strong>Last update time:</strong> {{ lastUpdate }}</p>
   <div v-if="categoryString">
     <p><strong>Selected:</strong> {{ numSelected }} / {{ paperNum[categoryString] }} from {{ categoryString }}</p>
-    <p><strong>Paper dates:</strong> {{ paperDates }}</p>
+    <!-- <p><strong>Paper dates:</strong> {{ paperDates }}</p> -->
   </div>
   <div class="paper-list">
     <div v-for="(paper, index) in papers" :key="paper.url">

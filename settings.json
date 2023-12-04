@@ -1,6 +1,7 @@
 {
     "owner": "Spico197",
     "repo": "daily-arxiv",
+    "timezone": 8,
     "keys": [
         "information extraction", "event", "relation", "entity", "knowledge graph", "knowledge base", "knowledge",
         "language model", "LLM", "task planning"
