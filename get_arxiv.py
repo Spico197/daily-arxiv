@@ -7,9 +7,11 @@ Inspired by:
 import re
 import json
 from datetime import datetime, timedelta, timezone
+from dataclasses import dataclass
 from typing import Iterable
 
 import arxiv
+import feedparser
 
 
 def load_json(filepath):
@@ -28,7 +30,9 @@ def cover_timezones(date: datetime) -> datetime:
 
 
 def collect_category(category: str, days: int = 1) -> Iterable[arxiv.Result]:
-    """Collect arxiv papers from a category."""
+    """
+    Collect arxiv papers from a category.
+    """
     client = arxiv.Client(num_retries=10, page_size=500)
     query = arxiv.Search(
         query=f"cat:{category}",
@@ -36,6 +40,7 @@ def collect_category(category: str, days: int = 1) -> Iterable[arxiv.Result]:
     )
     results = client.results(query)
     max_iter = 1000
+
     while True:
         try:
             paper = next(results)
@@ -48,9 +53,10 @@ def collect_category(category: str, days: int = 1) -> Iterable[arxiv.Result]:
         if max_iter <= 0:
             break
 
-        date = datetime.now(paper.updated.tzinfo)
-        if paper.updated.date() < date.date() - timedelta(days=days):
-            break
+        today = datetime.now(paper.updated.tzinfo)
+        if paper.updated.date() < today.date() - timedelta(days=days):
+            if paper.updated.weekday() < 4 or today.weekday() != 0:
+                break
 
         # Convert to UTC+8
         date = cover_timezones(paper.updated).strftime("%b %d %Y %a")
@@ -133,7 +139,7 @@ if __name__ == "__main__":
         keys=settings.get("keys"),
         authors=settings.get("authors"),
         comments=settings.get("comments"),
-        element_class="emph"
+        element_class="emph",
     )
     print("Dumping...")
     dump_json("papers_with_style.json", new_papers)

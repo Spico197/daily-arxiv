@@ -102,10 +102,10 @@ function navigateToTop() {
     <button v-for="category in categories" :key="category" @click="showPapers(category)">{{ category }} ({{
       paperNum[category] }})</button>
   </div>
-  <p>Last update time: {{ lastUpdate }}</p>
+  <p><strong>Last update time:</strong> {{ lastUpdate }}</p>
   <div v-if="categoryString">
-    <p>Selected {{ numSelected }} / {{ paperNum[categoryString] }} from {{ categoryString }}</p>
-    <p>Paper dates: {{ paperDates }}</p>
+    <p><strong>Selected:</strong> {{ numSelected }} / {{ paperNum[categoryString] }} from {{ categoryString }}</p>
+    <p><strong>Paper dates:</strong> {{ paperDates }}</p>
   </div>
   <div class="paper-list">
     <div v-for="(paper, index) in papers" :key="paper.url">
@@ -113,6 +113,7 @@ function navigateToTop() {
         <label class="col">{{ index }} - <input type="checkbox" v-model="isChecked[index]" /></label>
         <p class="col no-margin" v-html="paper.title"></p>
       </div>
+      <p class="no-margin"><span class="bold">Date: </span><span v-html="paper.date"></span></p>
       <p class="no-margin"><span class="bold">Authors: </span><span v-html="paper.authors.join(', ')"></span></p>
       <p class="no-margin" v-if="paper.comment"><span class="bold">Comment: </span><span v-html="paper.comment"></span>
       </p>
